@@ -1,7 +1,9 @@
 'use strict';
 
-var express = require('express');
-var cors = require('cors');
+const express = require('express'),
+      cors = require('cors'),
+      multer = require('multer'),
+      upload = multer({ dest: "uploads/" });
 
 // require and use "multer"...
 
@@ -14,7 +16,7 @@ app.get('/', function (req, res) {
      res.sendFile(process.cwd() + '/views/index.html');
   });
 
-app.get('/hello', function(req, res){
+app.post('/api/fileanalyse', upload.single('upfile'), function(req, res, next){
   res.json({greetings: "Hello, API"});
 });
 
