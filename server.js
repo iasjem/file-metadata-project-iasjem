@@ -17,7 +17,11 @@ app.get('/', function (req, res) {
   });
 
 app.post('/api/fileanalyse', upload.single('upfile'), function(req, res, next){
-  res.json({greetings: "Hello, API"});
+  const file = req.file;
+  res.json({
+    "fileName": file.originalname,
+    "sizeInBytes": file.size
+  });
 });
 
 app.listen(process.env.PORT || 3000, function () {
